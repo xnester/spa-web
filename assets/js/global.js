@@ -17,8 +17,52 @@ $(document).ready(function() {
 				'<strong>Oh snap!</strong> Change a few things up and try submitting again.'+
 				'</div>').fadeIn("fast");
 				$('#login_alert_check').fadeOut(10000,"linear");
-				}else{$(location).attr('href','./manage');}
+				}else{$(location).attr('href','./home');}
 			});
 		}
 	});
+	
+	
+
+
+	
+	/* Contact us*/
+	$("#phone").mask("999-999-9999");
+	
+	$("#form_contact").validate({
+		onkeyup: false,
+		submitHandler: function() {
+			//$("div.error").hide();
+			//alert("submit! use link below to go to the other step"); 
+			var name = $('#name').val();
+			var email = $('#email').val();
+			var phone = $('#phone').val();
+			var title = $('#title').val();
+			var detail = $('#detail').val();
+			
+			$.post('./contact/addComment',{ 'name': name, 'email': email, 'phone': phone, 'title': title, 'detail': detail },
+					function(result){
+						data = JSON.parse(result);
+						if(data.code == '1'){
+							//alert(data.success);
+							$('#myModal').find('.modal-body').text(data.success);
+						    
+							$("input[type=text], textarea, input[type=email]").val("");
+						} else {
+							//alert(data.error);
+							$('#myModal').find('.modal-body').text(data.error);
+						}
+						$('#myModal').modal({ keyboard: true,backdrop: true })
+					 	//$('#upload_alert').html('<div id="upload_error" class="alert alert-error">'+data.error+'</div>');
+					}
+			);
+		},
+	messages: {
+			title:"*",
+			detail:"*"
+		}
+		
+	});
+	
+	
 });

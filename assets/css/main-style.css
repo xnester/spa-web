@@ -213,3 +213,15 @@ margin-bottom: 100px;
 	width: 800px;
 	margin:0 auto;
 }
+
+
+label.error {
+    color: red;
+    float: none;
+    padding-left: 0.5em;
+    vertical-align: top;
+    display: inline;
+}
+#myModal {
+	color: #000;
+}

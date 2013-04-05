@@ -9,6 +9,7 @@
 <!-- Le styles -->
 <link href="<?php echo base_url();?>assets/css/bootstrap.css"
 	rel="stylesheet">
+<link href="<?php echo base_url();?>assets/css/admin-style.css" rel="stylesheet">
 <link href="<?php echo base_url();?>assets/css/font-awesome.css" rel="stylesheet">
 <!--<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400italic' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/main-style.css" type="text/css" />-->
@@ -30,14 +31,14 @@
 				<h3 class="muted">Project name</h3>
 			</div>
 			<div class="span3 offset6">
-				Welcome <?php echo $name ?> <a href="<?php echo base_url()?>admin/manage/do_logout">Logout Fool!</a>
+				Welcome <?php echo $name ?> <a href="<?php echo base_url()?>admin/home/do_logout">Logout Fool!</a>
 			</div>
 		</div>
 		<div class="row-fluid">
 			<div class="span3">
 			<div id="admin_menu">
 				<ul class="nav nav-tabs nav-stacked">
-					<li class="active"><?php echo anchor('admin/manage','<i class="icon-home"></i> Home')?></li>
+					<li class="active"><?php echo anchor('admin/home','<i class="icon-home"></i> Home')?></li>
 					<li><?php echo anchor('admin/promotions','<i class="icon-gift"></i> Promotions')?></li>
 					<li><?php echo anchor('admin/gallery','<i class="icon-picture"></i> Gallery')?></li>
 					<li><?php echo anchor('admin/comments','<i class="icon-comment"></i> Comments')?></li>
@@ -68,23 +69,43 @@
 	<!-- Le javascript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="<?php echo base_url();?>assets/js/jquery.js"></script>
+	<script src="<?php echo base_url();?>assets/js/jquery-1.8.2.js"></script>
 	<script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>
-	<script src="<?php echo base_url();?>assets/js/global.js"></script>
-	<!-- Test automatic cycle -->
+	<!--  <script src="<?php echo base_url();?>assets/js/global.js"></script>-->
+	
+	<script src="<?php echo base_url();?>assets/module/jquery-form/jquery.form.js"></script>
+	
 	<script type="text/javascript">
-	  $(document).ready(function() {
+	$(document).ready(function() {
+			// Test automatic cycle
 		    $('#myCarousel').carousel({
 		      interval: 2000
 		    });
 
-		  //Heighlight the current page
+		  	// Heighlight the current page
 			var str=location.href.toLowerCase();
 			$("#admin_menu .nav li a").each(function() {			
 				if (str.indexOf(this.href.toLowerCase()) > -1) {
 					$("#admin_menu .nav li.active").removeClass("active");
 			    	$(this).parent().addClass("active");
 			    }
+			});
+
+			// Pretty file input field
+			$('input[id=userfile]').change(function() {
+			   	$('#photoCover').val($(this).val());
+			});
+
+			// Reset Gallery form
+			$('#btn-close').click(function(){
+				$('form#gallery_upload').find(':input').each(function() {
+					$(this).val('');
+					$('#results').html('');
+					$('.percent').html('0%');
+					$('.bar').css('width','0%');
+					//$('#btn_upload').removeClass('disabled');
+					//$('#btn_upload').attr("disabled", "false");
+				});
 			});
 	});
 	

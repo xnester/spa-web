@@ -62,10 +62,13 @@
 	<!-- Le javascript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="<?php echo base_url();?>assets/js/jquery.js"></script>
+	<script src="<?php echo base_url();?>assets/js/jquery-1.8.2.js"></script>
 	<script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>
 	<script src="<?php echo base_url();?>assets/js/global.js"></script>
-
+	
+	<script src="<?php echo base_url();?>assets/js/jquery.validate.js"></script>
+	<script src="<?php echo base_url();?>assets/js/jquery.maskedinput.min.js"></script>
+	
 	<!-- First, add jQuery (and jQuery UI if using custom easing or animation -->
 	<script type="text/javascript" src="<?php echo base_url();?>assets/gallery/js/jquery-ui.min.js"></script>
 	
@@ -75,6 +78,7 @@
 
 	<!-- Third, add the GalleryView Javascript and CSS files -->
 	<script type="text/javascript" src="<?php echo base_url();?>assets/gallery/js/jquery.galleryview-3.0-dev.js"></script>
+	
 	
 
 	<!-- Lastly, call the galleryView() function on your unordered list(s) -->

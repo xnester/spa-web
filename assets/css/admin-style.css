@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+/* Gallery-admin */
+.percent {
+    display: inline-block;
+    left: 48%;
+    position: absolute;
+}
+
+#upload_error p {
+	margin: 0px;
+}

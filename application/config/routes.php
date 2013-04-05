@@ -38,11 +38,11 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "home";
 $route['404_override'] = '';
 
 /* Route URI for admin floder */
-$route['admin'] = "admin/manage";
+$route['admin'] = "admin/home";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -8,10 +8,7 @@ class MUtils extends CI_Model
 	/*
 	 * Global Variable
 	 */
-	private $table;
-	
-	
-	
+	private $table_name;
 	
 	function __construct()
 	{
@@ -23,15 +20,24 @@ class MUtils extends CI_Model
 	 */
 	function initd($table)
 	{
-		$this->table = $table;
+		$this->table_name = $table;
 	}
 	
 	/*
 	 * Select data from DB
 	*/
-	function select_db($id)
+	function query_db($limit,$offset,$order,$dir='desc')
 	{
-		echo $this->table;
+		if( $this->table_name != "" )
+		{
+			$this->db->from($this->table_name);
+			$this->db->order_by($order,$dir);
+			//$this->db->where('status', 'Active');
+			$this->db->limit($limit, $offset);
+			$query=$this->db->get();
+			return $query;
+		}
+		return false;
 	}
 	
 	/*
@@ -39,7 +45,13 @@ class MUtils extends CI_Model
 	 */
 	function insert_db($data)
 	{
-		
+		if( $this->table_name != "" )
+		{
+			$data['stamp']=date("Y-m-d H:i:s");
+			$this->db->insert($this->table_name,$data);
+			return true;
+		}
+		return false;
 	}
 	
 	/*
